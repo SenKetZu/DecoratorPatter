@@ -1,26 +1,48 @@
 #include <iostream>
 #include "Player.h"
 #include "ConcreteDecorators.h"
+#include <vector>
+
+
+template<class T>
+T test()
+{
+	
+}
+
+
+
+
+
+
+
+
 
 void main()
 {
-
-	Player player1;
-	std::cout << "Vida: " << player1.getLife() << std::endl;
-	std::cout << "Daño: " << player1.getDamage() << std::endl;
-
-
-	PlusDamage addDamage(player1);
-
-	std::cout << "Vida: " << addDamage.getLife() << std::endl;
-	std::cout << "Daño: " << addDamage.getDamage() << std::endl;
-
-	PlusLife addLife(player1);
-	std::cout << "Vida: " << addLife.getLife() << std::endl;
-	std::cout << "Daño: " << addLife.getDamage() << std::endl;
+	
 
 
 
+
+
+
+
+
+
+	Entity* player=new PlusDamage(new PlusDamage(new PlusLife(new Player)));
 
 	
+	player = new PlusDamage(player);
+	
+	player = new PlusDamage(player);
+
+
+	std::cout << "Vida: " << player->getLife() << std::endl;
+	std::cout << "Daño: " << player->getDamage() << std::endl;
+
+
+
+
+	return;
 }
