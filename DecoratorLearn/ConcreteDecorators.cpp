@@ -1,5 +1,5 @@
 #include "ConcreteDecorators.h"
-
+#include <iostream>
 
 
 float PlusDamage::getDamage()
@@ -19,7 +19,7 @@ float PlusLife::getLife()
 
 
 
-
-
-
-
+void Shoot::shoot()
+{
+	std::cout << std::endl << "pium pium" << std::endl;
+}

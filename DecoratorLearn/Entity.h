@@ -14,7 +14,7 @@ public:
 	virtual float getLife();
 	virtual float getDamage();
 	virtual bool getState();
-
+	//virtual void shoot();
 
 
 
