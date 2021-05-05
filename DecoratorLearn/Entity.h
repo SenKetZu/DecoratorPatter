@@ -8,8 +8,7 @@ public:
 	virtual void setDamage(float damage);
 	virtual void killEntity();
 */
-
-
+	Entity() {};
 
 	virtual float getLife();
 	virtual float getDamage();

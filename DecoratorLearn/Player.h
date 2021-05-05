@@ -6,6 +6,7 @@ class Player:
 {
 public:
 
+	Player(){}
 
 	float getLife();
 	float getDamage();

@@ -8,68 +8,53 @@
 
 class ModHandler
 {
+private:
 	Entity* _Entity;
-	
 
 public:
-	
 	ModHandler(Entity* entity) : _Entity(entity) {};
 	ModHandler() :_Entity(new Player) {};
 
+	ModHandler* addmod(std::vector<EntityDecorator> *decorators)
+	{
+		for (auto &decorator : *decorators)
+		{			
+			decorator.Decorate(this->_Entity);			
+		}
 
-	template<class... T>
-	Entity* addmod() 
-	{	
-			_Entity = new T(_Entity);
+		return this;
+	}
 
+	Entity* getPlayer()
+	{
 		return _Entity;
 	}
 
-	Entity* getPlayer() 
-	{ 
-		return _Entity; 
-	}
-	
+	// aca estaria bueno que tengas un "Entity* Build() que realice el new de _Entity...
+	/*
+	* asi te queda al final un 
+	*  	auto player = playerBuilder.addmod<PlusLife>()
+	*		                       .addmod<PlusDamage>()
+	*                              .Build();
+	* igual, esa forma de hacer las cosas es costumbre de ASP.NET 
+	*/
 };
-
-
-
-
-
-
-
-
-
-
 
 void main()
 {
+	auto playerBase = new Player;
 
-	ModHandler player1(new Player);
+	ModHandler playerModded(playerBase);
 
-
-
-	player1.addmod<PlusLife>();
-
-	player1.addmod<PlusDamage>();
-	/*
-	std::cout << player << "<---PUNTERO PLAYER" << std::endl;
-
-
-	player = new PlusDamage(player);
-
-	std::cout << player << "<---PUNTERO PLAYER2" << std::endl;
-
-	player = new PlusLife(player);
+	//playerModded.addmod<PlusLife>()->addmod<PlusDamage>();
 	
-	*/
+	playerModded.addmod(new std::vector<EntityDecorator>{
+		new PlusDamage,
+		new PlusLife
+	});
 
-	std::cout << "Vida: " << player1.getPlayer()->getLife() << std::endl;
-	std::cout << "Daño: " << player1.getPlayer()->getDamage() << std::endl;
-
-
-
-
+	std::cout << "Vida: " << playerModded.getPlayer()->getLife() << std::endl;
+	std::cout << "Daño: " << playerModded.getPlayer()->getDamage() << std::endl;
 
 	return;
 }
