@@ -8,7 +8,18 @@ protected:
 
 
 public:
+	EntityDecorator() {};
+
 	EntityDecorator(Entity* entity) :_Entity(entity) {};
+
+	void Decorate(Entity *entity)
+	{
+		auto oldEntity = this->_Entity;
+		this->_Entity = new Entity(*entity);
+
+		// clean memory <3
+		delete oldEntity;
+	}
 
 	float getLife();
 	float getDamage();

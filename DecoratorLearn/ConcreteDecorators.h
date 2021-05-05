@@ -7,7 +7,7 @@ class PlusDamage:
 	public EntityDecorator
 {
 public:
-
+	PlusDamage() {};
 	PlusDamage(Entity* entity) :EntityDecorator(entity) {};
 
 	float getDamage();
@@ -19,6 +19,7 @@ class PlusLife :
 	public EntityDecorator
 {
 public:
+	PlusLife() {};
 	PlusLife(Entity* entity) : EntityDecorator(entity) {};
 
 	float getLife();
@@ -31,6 +32,7 @@ class Shoot:
 	public EntityDecorator
 {
 public:
+	Shoot() {};
 	Shoot(Entity* entity) :EntityDecorator(entity) { shoot(); };
 
 	void shoot();
